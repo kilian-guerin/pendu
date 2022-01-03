@@ -5,8 +5,6 @@ require('src/class-pendu.php');
 $pendu = new Pendu();
 $pendu->verifyWord();
 
-var_dump($pendu->getWord());
-
 if(isset($_POST['retry'])) {
     $pendu->generateWord();
 }
@@ -25,10 +23,7 @@ if(isset($_POST['retry'])) {
     <?php require('./src/header.php') ?>
     <main>
         <?php if ($_SESSION['nbTentatives'] == -1) { ?>
-            <div class="top">
-                <h1>LE JEU DU PENDU</h1>
-            </div>
-            <div class="contener">
+            <div class="contener" id="contener-center">
                 <img src="./assets/img/pendu-6.png" alt="">
                 <h2><?= $language['win-title'] ?></h2><br>
                 <h3><?= $language['win'] ?></h3>
@@ -39,11 +34,9 @@ if(isset($_POST['retry'])) {
             </div>
         <?php } else if($_SESSION['nbTentatives'] < 6) { ?>
                 <div class="top">
-                    <h1><?= $GLOBALS['language']['title'] ?></h1>
-                    <h4><?= $GLOBALS['language']['subtitle'] ?></h4>
                 </div>
                 <div class="contener">
-                <img src="./assets/img/pendu-<?= $_SESSION['nbTentatives'] ?>.png" alt="">
+                    <img src="./assets/img/pendu-<?= $_SESSION['nbTentatives'] ?>.png" alt="">
                     <form class="gamePendu" action="" method="post">
                         <div class="box">
                         <h3 id="hide-word"><?php
@@ -59,7 +52,7 @@ if(isset($_POST['retry'])) {
             <div class="top">
                 <h1>LE JEU DU PENDU</h1>
             </div>
-            <div class="contener">
+            <div class="contener" id="contener-center">
                 <img src="./assets/img/pendu-6.png" alt="">
                 <h2><?= $language['lose-title'] ?></h2><br>
                 <h3><?= $language['lose'] . $pendu->getWord(); ?></h3>
@@ -70,5 +63,6 @@ if(isset($_POST['retry'])) {
             </div>
         <?php } ?>
     </main>
+    <?php require('./src/footer.php') ?>
 </body>
 </html>

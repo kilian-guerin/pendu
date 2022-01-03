@@ -4,6 +4,11 @@
 
     $_SESSION['SelectedLanguage'] = 'en';
 
+    $AllLanguages = [
+        'Français' => 'fr',
+        'Anglais' => 'en',
+    ];
+
     $SelectedLanguage = $_SESSION['SelectedLanguage'];
 
     if($SelectedLanguage == 'fr') {

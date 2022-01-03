@@ -28,6 +28,7 @@ class Pendu {
             for($i=0; isset($_SESSION['Word'][$i]) ; $i++) {
                 if ($_SESSION['Word'][$i] == $_GET['word']) {
                     $_SESSION['HiddenWord'][$i] = $_GET['word'];
+                    
                     if ( implode($_SESSION['HiddenWord']) == $_SESSION['Word']) {
                         $_SESSION['nbTentatives'] = -1;
                     }
@@ -38,7 +39,9 @@ class Pendu {
 
     public function ErrorLetter() {
         if( !strpos( $_SESSION['Word'], $_GET['word'] ) ) {
-            $_SESSION['nbTentatives']++;
+            if( $_SESSION['Word'][0] != $_GET['word'] ) {
+                $_SESSION['nbTentatives']++;
+            }
         }
     }
 
@@ -49,8 +52,6 @@ class Pendu {
         for($i=0;$i<strlen($alphabet);$i++) {
             if ( strpos( $_SESSION['Words'], substr($alphabet,$i,1) ) === false) {
                 echo "<a class='btn blue' href='game.php?word=".substr($alphabet,$i,1)."'>".substr($alphabet,$i,1)."</a> ";
-            // } else if ($this->verifyStatus() == false) {
-                // echo "<a class='btn green'>".substr($alphabet,$i,1)."</a> ";
             } else {
                 echo "<a class='btn red'>".substr($alphabet,$i,1)."</a> ";
             }

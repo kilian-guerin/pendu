@@ -21,13 +21,13 @@ if(isset($_POST['play'])) {
 <body>
     <?php require('./src/header.php') ?>
     <main>
-        <div class="contener">
+        <div class="contener" id="contener-center">
             <div class="box">
                 <h2><?= $language['title'] ?></h2>
                 <h3><?= $language['subtitle'] ?></h3>
             </div>
             <form class="gamePendu" action="" method="post">
-                <input type="submit" class="btn blue" name="play" value="Jouer">
+                <input type="submit" class="btn blue" name="play" value="<?= $language['play'] ?>">
             </form>
         </div>
     </main>
