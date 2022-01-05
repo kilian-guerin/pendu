@@ -18,21 +18,23 @@ class User {
     }
 
     public function login($login, $password) {
-        $req = $GLOBALS['bdd']->query("SELECT * FROM `utilisateurs` WHERE login='$login' AND password='$password'");
+        $req = $GLOBALS['bdd']->query("SELECT * FROM `users` WHERE login='$login' AND password='$password'");
         $res = $req->fetchAll(PDO::FETCH_ASSOC);
         if(count($res)) {
            $_SESSION['id'] = $res[0]['id'];
            $_SESSION['login'] = $login;
            $_SESSION['password'] = $password;
+           $_SESSION['perms'] = $res[0]['perms'];
            
            $this->_id = $_SESSION['id'];
            $this->_login = $login;
            $this->_password = $password;
+           $this->_perms = $_SESSION['perms'];
 
            $this->_Malert = 'Connexion réussi, vous allez être redirigé.';
            $this->_Talert = 1;
 
-           header('refresh:3;url=../users/profil.php');
+           header('refresh:3;url=./profil.php');
         } else {
             $this->_Malert = 'Aucun utilisateur trouvé.';
             $this->_Talert = 2;
@@ -41,7 +43,7 @@ class User {
     }
 
     public function register($login, $password, $password2) {
-        $req = $GLOBALS['bdd']->query("SELECT * FROM `utilisateurs` WHERE login='$login'");
+        $req = $GLOBALS['bdd']->query("SELECT * FROM `users` WHERE login='$login'");
         $res = $req->fetchAll(PDO::FETCH_ASSOC);
 
         if(count($res)) {
@@ -49,12 +51,12 @@ class User {
             $this->_Talert = 2;
         } else {
             if($password == $password2) {
-                $req = $GLOBALS['bdd']->prepare("INSERT INTO `utilisateurs`(`login`, `password`) VALUE ('$login','$password')");
+                $req = $GLOBALS['bdd']->prepare("INSERT INTO `users`(`login`, `password`) VALUE ('$login','$password')");
                 $req->execute();
 
                 $this->_Malert = 'Félicitation votre compté à été créer avec succès, vous être redirigé.';
                 $this->_Talert = 1;
-                header('refresh:2;url=./login.php');
+                header('refresh:3;url=./login.php');
             } else {
                 $this->_Malert = 'Vos mots de passe doivent être identiques.';
                 $this->_Talert = 2;
@@ -63,13 +65,13 @@ class User {
     }
 
     public function update($login, $password, $password2) {
-        $reqLogin = $GLOBALS['bdd']->query("SELECT * FROM `utilisateurs` WHERE login='$login'");
+        $reqLogin = $GLOBALS['bdd']->query("SELECT * FROM `users` WHERE login='$login'");
         $resLogin = $reqLogin->fetchAll(PDO::FETCH_ASSOC);
 
         if(($login != $_SESSION['login']) && ($password != $_SESSION['password'])) {
             if(!count($resLogin)) {
                 if($password == $password2) {
-                    $req = $GLOBALS['bdd']->prepare("UPDATE `utilisateurs` SET `login`='$login', `password`='$password' WHERE id='".$_SESSION['id']."'");
+                    $req = $GLOBALS['bdd']->prepare("UPDATE `users` SET `login`='$login', `password`='$password' WHERE id='".$_SESSION['id']."'");
                     $req->execute();
     
                     $_SESSION['login'] = $login;
@@ -84,7 +86,7 @@ class User {
             }
         } else if($login != $_SESSION['login']) {
             if(!count($resLogin)) {
-                $req = $GLOBALS['bdd']->prepare("UPDATE `utilisateurs` SET `login`='$login' WHERE id='".$_SESSION['id']."'");
+                $req = $GLOBALS['bdd']->prepare("UPDATE `users` SET `login`='$login' WHERE id='".$_SESSION['id']."'");
                 $req->execute();
 
                 $_SESSION['login'] = $login;
@@ -97,7 +99,7 @@ class User {
             }
         } else if($password != $_SESSION['password']) {
             if($password == $password2) {
-                $req = $GLOBALS['bdd']->prepare("UPDATE `utilisateurs` SET `password`='$password' WHERE id='".$_SESSION['id']."'");
+                $req = $GLOBALS['bdd']->prepare("UPDATE `users` SET `password`='$password' WHERE id='".$_SESSION['id']."'");
                 $req->execute();
 
                 $_SESSION['password'] = $password;
@@ -110,6 +112,12 @@ class User {
         }
     }
 
+    public function disconnect() {
+        session_start();
+        session_destroy();
+        header('location: ../index.php');
+    }
+
     /*
 
         GET LES INFOS À PARTIR D'UN ID
@@ -117,7 +125,7 @@ class User {
     */
 
     public function getAllInfosById($id) {
-        $req = $GLOBALS['bdd']->query("SELECT * FROM `utilisateurs` WHERE id='$id'");
+        $req = $GLOBALS['bdd']->query("SELECT * FROM `users` WHERE id='$id'");
         $res = $req->fetchAll(PDO::FETCH_ASSOC);
 
         $user = ['id' => $res[0]['id'], 'login' => $res[0]['login'], 'password' => $res[0]['password']];
@@ -126,7 +134,7 @@ class User {
     }
 
     public function getLoginById($id) {
-        $req = $GLOBALS['bdd']->query("SELECT * FROM `utilisateurs` WHERE id='$id'");
+        $req = $GLOBALS['bdd']->query("SELECT * FROM `users` WHERE id='$id'");
         $res = $req->fetchAll(PDO::FETCH_ASSOC);
 
         $login = $res[0]['login'];
@@ -135,7 +143,7 @@ class User {
     }
 
     public function getPasswordById($id) {
-        $req = $GLOBALS['bdd']->query("SELECT * FROM `utilisateurs` WHERE id='$id'");
+        $req = $GLOBALS['bdd']->query("SELECT * FROM `users` WHERE id='$id'");
         $res = $req->fetchAll(PDO::FETCH_ASSOC);
 
         $password = $res[0]['password'];

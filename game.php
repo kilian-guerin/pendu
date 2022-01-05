@@ -1,6 +1,6 @@
 <?php
 require('config.php');
-require('src/class-pendu.php');
+require('model/class-pendu.php');
 
 $pendu = new Pendu();
 $pendu->verifyWord();
@@ -23,10 +23,10 @@ if(isset($_POST['retry'])) {
     <?php require('./src/header.php') ?>
     <main>
         <?php if ($_SESSION['nbTentatives'] == -1) { ?>
-            <div class="contener" id="contener-center">
+            <div class="contener flex-form">
                 <img src="./assets/img/pendu-6.png" alt="">
                 <h2><?= $language['win-title'] ?></h2><br>
-                <h3><?= $language['win'] ?></h3>
+                <h3><?= $language['win'] . $pendu->getWord() ?></h3><br>
                 <form class="gamePendu" action="" method="post">
                     <input type="submit" class="btn green" href="index.php" name="retry" value="<?= $language['play'] ?>">
                     <a class="btn red" href="index.php"><?= $language['leave'] ?></a>
@@ -52,7 +52,7 @@ if(isset($_POST['retry'])) {
             <div class="top">
                 <h1>LE JEU DU PENDU</h1>
             </div>
-            <div class="contener" id="contener-center">
+            <div class="contener center">
                 <img src="./assets/img/pendu-6.png" alt="">
                 <h2><?= $language['lose-title'] ?></h2><br>
                 <h3><?= $language['lose'] . $pendu->getWord(); ?></h3>
