@@ -51,10 +51,10 @@ class User {
             $this->_Talert = 2;
         } else {
             if($password == $password2) {
-                $req = $GLOBALS['bdd']->prepare("INSERT INTO `users`(`login`, `password`) VALUE ('$login','$password')");
+                $req = $GLOBALS['bdd']->prepare("INSERT INTO `users`(`login`, `password`,`perms`) VALUE ('$login','$password','1')");
                 $req->execute();
 
-                $this->_Malert = 'Félicitation votre compté à été créer avec succès, vous être redirigé.';
+                $this->_Malert = 'Félicitation votre compte à été créer avec succès, vous être redirigé.';
                 $this->_Talert = 1;
                 header('refresh:3;url=./login.php');
             } else {

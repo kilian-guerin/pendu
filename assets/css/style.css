@@ -274,6 +274,16 @@ main div.contener form.registration input.text-input {
 /*
 ////////////////////////////////////////////////////////////////////////
 
+                    RANKINGS CLASSES
+
+////////////////////////////////////////////////////////////////////////
+*/
+
+
+
+/*
+////////////////////////////////////////////////////////////////////////
+
                     ADMIN CLASSES
 
 ////////////////////////////////////////////////////////////////////////
@@ -304,12 +314,12 @@ main div.contener div.sub-box div.box {
     margin: 1%;
 }
 
-main div.contener div.sub-box div.box div.left, div.right {
+main div.contener div.sub-box div.box div.left, form.right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width:48%;
+    width: 48%;
     height: 100%;
 }
 
@@ -317,7 +327,10 @@ main div.contener div.sub-box div.box div.left, div.right {
 input.size {
     width: 100%;
     height: 30%;
+}
 
+#add-word {
+    text-align: center;
 }
 
 /*

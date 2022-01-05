@@ -57,22 +57,44 @@ class Pendu {
         $file = file("../mots.txt");
         $cut = explode(" ", $file[0]);
 
-        if(!strpos($cut, $word)) { // Refaire la condition que si il y a le mot $word dans la liste alors on annule l'ajout du mot
-            $words = file_get_contents("../mots.txt");
-            $words .= ' ' . $word;
-            file_put_contents("../mots.txt", $words);
-
-            $this->_Malert = 'Votre mot à bien été ajouter.';
-            $this->_Talert = 1;
-
-            header('refresh:3');
-        } else {
+        if(array_search($word, $cut)) {
             $this->_Malert = 'Le mot que vous souhaiter ajouer est déjà dans la liste.';
             $this->_Talert = 2;
 
-            header('refresh:2');
+            header('refresh:3');
+        } else {
+            $words = file_get_contents("../mots.txt");
+            $words .= ' ' . $word;
+            file_put_contents("../mots.txt", $words);
+            
+            $this->_Malert = 'Votre mot à bien été ajouter.';
+            $this->_Talert = 1;
+            
+            header('refresh:3');
         }
     }
+
+    public function editWord($word) {
+
+    }
+
+    public function deleteWord($word) {
+        $file = file('../mots.txt');
+        $cut = explode(' ', $file[0]);
+
+
+        for($i=0; $i<count($cut); $i++) {
+            if($cut[array_search($word, $cut)]) {
+                var_dump($cut);
+                break;
+            }
+        }
+        
+        // $this->_Malert = 'Le mot à bien été supprimer.';
+        // $this->_Talert = 1;
+
+    }
+
 
     public function getAlphabet() {
         // Met toute les lettre jouable dans une variable.

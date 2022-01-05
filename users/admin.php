@@ -5,6 +5,10 @@ $word = new Pendu();
 
 if(isset($_POST['addWord'])) {
     $word->addWord($_POST['addWord']);
+} else if (isset($_POST['editWord'])) {
+    $word->editWord($_POST['editWord']);
+} else if (isset($_POST['deleteWord'])) {
+    $word->deleteWord($_POST['deleteWord']);
 }
 ?>
 
@@ -20,12 +24,12 @@ if(isset($_POST['addWord'])) {
 <body>
     <?php require('../src/header.php') ?>
     <main>
-        <?php if (isset($_POST['addWord'])) {
+        <?php if (isset($_POST['addWord']) && isset($_POST['editWord']) && isset($_POST['deleteWord'])) {
             $word->alerts();
         } ?>
         <div class="contener center">
-            <form class="gamePendu center" action="" method="post">
-                <input type="text" class="btn blue" name="addWord" placeholder="<?= $language['addWord'] ?>">
+            <form class="gamePendu center" method="post">
+                <input type="text" class="btn blue" id="add-word" name="addWord" placeholder="<?= $language['addWord'] ?>">
             </form>
             <div class="sub-box">
             <?php
@@ -35,11 +39,12 @@ if(isset($_POST['addWord'])) {
                     <div class="left">
                         <h3>'.$key.'</h3>
                     </div>
-                    <div class="right">
-                        <input type="submit" class="btn orange size" name="edit" value="'.$language['edit'].'">
+                    <form class="right" method="post">
+                        <input type="submit" class="btn orange size" name="editWord" value="'.$language['edit'].'">
                         <br>
-                        <input type="submit" class="btn red size" name="delete" value="'.$language['delete'].'">
-                    </div>
+                        <input type="submit" class="btn red size" name="deleteWord" value="'.$language['delete'].'">
+                        <input type="hidden" class="btn red size" name="deleteWord" value="'.$key.'">
+                    </form>
                 </div>';
             }
             ?>
