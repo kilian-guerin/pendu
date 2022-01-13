@@ -11,21 +11,6 @@
     src: url('../font/comfortaa.ttf');
 }
 
-@font-face {
-    font-family: GO3V2;
-    src: url('../font/go3v2.ttf');
-}
-
-@font-face {
-    font-family: KGHAPPY;
-    src: url('../font/KGHAPPY.ttf');
-}
-
-@font-face {
-    font-family: VARSITY;
-    src: url('../font/varsity_regular.ttf');
-}
-
 /*
 ////////////////////////////////////////////////////////////////////////
 
@@ -37,11 +22,13 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'COMFORTAA';
 }
 
 html, body {
     width: 100%;
     height: 100%;
+    font-family: 'COMFORTAA';
 }
 
 /*
@@ -55,90 +42,30 @@ html, body {
 header {
     width: 100%;
     height: 8%;
-
     background-color: #0099ff;
-
     display: flex;
     align-items: center;
     justify-content: flex-start;
     flex-direction: row;
-
     position: absolute;
 }
 
 header div.center {
     width: 20%;
     height: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     color: #fff;
-    font-family: 'COMFORTAA';
 }
 
-header div.left {
+header div.left, header div.right {
     width: 40%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-    font-family: 'COMFORTAA';
-}
-
-header div.right {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    flex-direction: row;
-    font-family: 'COMFORTAA';
-}
-
-header div.right li > a:after { content: ' »'; }
-header div.right li > a:only-child:after { content: ''; }
-
-header div.right li a {
-    padding:20px;
-    display:inline-block;
-    color:white;
-    text-decoration:none;
-}
-
-header div.right li a:hover {
-    opacity:0.5;
-}
-
-header div.right ul {
-    list-style-type: none;
-}
-
-header div.right li ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    background-color: #fff;
-    color: #000;
-    min-width: auto;
-    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%);
-    z-index: 1;
-    list-style-type: none;
-}
-
-header div.right ul li ul li a {
-    color: #000;
-}
-
-header div.right li ul li {
-    width:100%;
-    border-bottom:1px solid rgba(255,255,255,.3);
-}
-
-header div.right li:hover ul {
-    display:block;
 }
 
 header a {
@@ -146,10 +73,6 @@ header a {
     text-decoration: none;
     transition-duration: 200ms;
 }
-
-/* header a:hover { */
-    /* font-size: 120%; */
-/* } */
 
 /*
 ////////////////////////////////////////////////////////////////////////
@@ -173,30 +96,22 @@ main div.top {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-family: 'COMFORTAA';
+    /* font-family: 'COMFORTAA'; */
 }
-
-
-main div.contener {
-    width: 100%;
-    height: 70%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'COMFORTAA';
-}
-
-main div.center {
+main div.center, div.contener {
     width: 100%;
     height: 100%;
 }
 
-main div.contener div.box {
+main div.contener,  div.box {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+}
+
+
+main div.contener div.box {
     width: 50%;
     height: 25%;
     text-align: center;
@@ -218,24 +133,20 @@ main div.contener form.gamePendu {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
-    width: 40%;
-    height: 20%;
-}
-
-main div.contener form.flex-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    width: 40%;
+    height: 25%;
 }
 
 main div.contener form.gamePendu div.box {
     width: 80%;
     height: 25%;
-
     display: block;
-    text-align:center;
+    text-align: center;
+}
+
+main div.contener form.gamePendu>input, div.box>select {
+    margin: 6%;
 }
 
 #hide-word {
@@ -247,28 +158,49 @@ main div.contener form.gamePendu div.box {
 /*
 ////////////////////////////////////////////////////////////////////////
 
-                    LOGIN/REGISTER/LOGIN CLASSES
+                    LOGIN/REGISTER/PROFIL CLASSES
 
 ////////////////////////////////////////////////////////////////////////
 */
 
+main div.contener > svg {
+    width: 30%;
+}
+
 main div.contener form.registration {
     width: 30%;
-    height: 40%;
+    height: 25%;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
-    font-family: 'COMFORTAA';
+    position: absolute;
+}
+
+#register-form {
+    height: 33%;
+}
+
+#register-form > label, input.submit {
+    margin: 2%;
 }
 
 main div.contener form.registration input.text-input {
     width: 40%;
     height: 10%;
-
     padding: 1%;
+}
 
-    font-family: 'COMFORTAA';
+#profil-svg {
+    width: 35%;
+}
+
+#profil-form {
+    height: 40%;
+}
+
+#profil-form > label, input.submit {
+    margin: 2%;
 }
 
 /*
@@ -279,7 +211,50 @@ main div.contener form.registration input.text-input {
 ////////////////////////////////////////////////////////////////////////
 */
 
+main div.contener div.sub-boxe {
+    width: 35%;
+    height: 50%;
+    overflow: scroll;
+    align-items: center;
+    text-align: center;
+    margin-left: 0%;
+}
 
+main div.contener div.sub-boxe div.boxe {
+    width: 98%;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #222;
+    color: #fff;
+    border-radius: 20px;
+    margin-bottom: 2%;
+}
+
+#header-table {
+    border: 2px solid #fff;
+}
+
+main div.contener div.sub-boxe div.boxe div.container-info-1, main div.contener div.sub-boxe div.boxe div.container-info-2{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+main div.contener div.sub-boxe div.boxe div.container-info-1 {
+    width: 30%;
+}
+
+main div.contener div.sub-boxe div.boxe div.container-info-2 {
+    width: 20%;
+}
+
+main div.contener div.sub-boxe::-webkit-scrollbar {
+    width: 0px;
+}
 
 /*
 ////////////////////////////////////////////////////////////////////////
@@ -308,7 +283,7 @@ main div.contener div.sub-box div.box {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items:center;
+    align-items: center;
     background-color: #222;
     border-radius: 20px;
     margin: 1%;
@@ -329,8 +304,94 @@ input.size {
     height: 30%;
 }
 
-#add-word {
+a.size {
+    width: 95%;
+    height: 22%;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-word, #add-word::placeholder {
+    text-align: center;
+    color: #fff;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+
+}
+
+div.popup {
+    background: #fff;
+    border-radius: 5px;
+    width: 20%;
+    height: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.popup h2 {
+    margin-top: 10%;
+    margin-bottom: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+    width:45%;
+    transition: all 200ms;
+    text-decoration: none;
+    text-align: center;
+}
+
+.popup .close:hover {
+    color: #CE3323;
+}
+.popup .content, form.popup, form.popup > div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+a.popup {
+    width: 44%;
+    height: 5%;
+    text-align: center;
+}
+
+input.popup {
+    width:51%;
+}
+
+@media screen and (max-width: 700px) {
+    .box , .popup {
+        width: 70%;
+    }
 }
 
 /*
@@ -344,12 +405,9 @@ input.size {
 footer {
     width: 100%;
     height: 8%;
-
     background-color: #0099ff;
-
-    font-family: 'COMFORTAA';
+    /* font-family: 'COMFORTAA'; */
     color: #fff;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -385,14 +443,13 @@ footer a:hover {
     position: relative;
     display: inline-block;
     border: none;
-    font-family: 'Comfortaa';
+    /* font-family: 'Comfortaa'; */
     transition-duration: 200ms;
 }
 
 .btn-letter {
     width: 8%;
     height: 100%;
-
     border-radius: 5px;
     padding: 1%;
     font-size: 15px;
@@ -402,7 +459,7 @@ footer a:hover {
     position: relative;
     display: inline-block;
     border: none;
-    font-family: 'Comfortaa';
+    /* font-family: 'Comfortaa'; */
     transition-duration: 200ms;
 }
 
@@ -440,15 +497,6 @@ footer a:hover {
     background-color: #FF6656;
 }
 
-.purple {
-    background-color: #9b59b6;
-    box-shadow: 0px 5px 0px 0px #82409D;
-}
-
-.purple:hover {
-    background-color: #B573D0;
-}
-
 .orange {
     background-color: #e67e22;
     box-shadow: 0px 5px 0px 0px #CD6509;
@@ -456,15 +504,6 @@ footer a:hover {
 
 .orange:hover {
     background-color: #FF983C;
-}
-
-.yellow {
-    background-color: #f1c40f;
-    box-shadow: 0px 5px 0px 0px #D8AB00;
-}
-
-.yellow:hover {
-    background-color: #FFDE29;
 }
 
 /*
@@ -475,95 +514,77 @@ footer a:hover {
 ////////////////////////////////////////////////////////////////////////
 */
 
-.succes {
-    background-color: green;
+.succes, .error {
     color: white;
     font-weight: bold;
-    font-family: "Comfortaa";
     width: 100%;
     height: 5%;
     text-align: center;
-    
     position: absolute;
     z-index: 999;
     top: 8%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     animation: topToBottom ease 2s;
     -webkit-animation: topToBottom ease 2s;
     -moz-animation: topToBottom ease 2s;
     -o-animation: topToBottom ease 2s;
     -ms-animation: topToBottom ease 2s;
 }
-
+.succes{
+    background-color: green;
+}
 .error {
     background-color: red;
-    color: white;
-    font-weight: bold;
-    font-family: "Comfortaa";
-    width: 100%;
-    height: 5%;
-    text-align: center;
-    
-    position: absolute;
-    z-index: 999;
-    top: 8%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    animation: topToBottom ease 2s;
-    -webkit-animation: topToBottom ease 2s;
-    -moz-animation: topToBottom ease 2s;
-    -o-animation: topToBottom ease 2s;
-    -ms-animation: topToBottom ease 2s;
 }
 
 @keyframes topToBottom {
-0% {
-    margin-top: -23%;
-}
-100% {
-    margin-top: 0%;
-}
+    0% {
+        margin-top: -23%;
+    }
+
+    100% {
+        margin-top: 0%;
+    }
 }
 
 @-moz-keyframes topToBottom {
-0% {
-    margin-top: -23%;
-}
-100% {
-    margin-top: 0%;
-}
+    0% {
+        margin-top: -23%;
+    }
+
+    100% {
+        margin-top: 0%;
+    }
 }
 
 @-webkit-keyframes topToBottom {
-0% {
-    margin-top: -23%;
-}
-100% {
-    margin-top: 0%;
-}
+    0% {
+        margin-top: -23%;
+    }
+
+    100% {
+        margin-top: 0%;
+    }
 }
 
 @-o-keyframes topToBottom {
-0% {
-    margin-top: -23%;
-}
-100% {
-    margin-top: 0%;
-}
+    0% {
+        margin-top: -23%;
+    }
+
+    100% {
+        margin-top: 0%;
+    }
 }
 
 @-ms-keyframes topToBottom {
-0% {
-    margin-top: -23%;
-}
-100% {
-    margin-top: 0%;
-}
+    0% {
+        margin-top: -23%;
+    }
+
+    100% {
+        margin-top: 0%;
+    }
 }
